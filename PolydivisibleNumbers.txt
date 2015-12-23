@@ -97,3 +97,6 @@ Answer computed in 210.894 seconds
 
 Polydivisible numbers in base 31:
 Answer computed in 4442.7 seconds
+
+Polydivisible numbers in base 32:
+Answer computed in 1343.17 seconds
