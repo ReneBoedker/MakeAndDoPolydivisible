@@ -1,102 +1,114 @@
 Polydivisible numbers in base 2:
 1, 
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 3:
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 4:
-3, 2, 1, 
 1, 2, 3, 
+3, 2, 1, 
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 5:
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 6:
 1, 4, 3, 2, 5, 
 5, 4, 3, 2, 1, 
-Answer computed in 0 seconds
-
+Answer computed in 0.015 seconds
+ 
 Polydivisible numbers in base 7:
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 8:
 5, 2, 3, 4, 7, 6, 1, 
-5, 6, 7, 4, 3, 2, 1, 
 3, 2, 5, 4, 1, 6, 7, 
+5, 6, 7, 4, 3, 2, 1, 
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 9:
 Answer computed in 0 seconds
-
+ 
 Polydivisible numbers in base 10:
 3, 8, 1, 6, 5, 4, 7, 2, 9, 
-Answer computed in 0.015 seconds
-
+Answer computed in 0 seconds
+ 
 Polydivisible numbers in base 11:
-Answer computed in 0.015 seconds
-
+Answer computed in 0 seconds
+ 
 Polydivisible numbers in base 12:
-Answer computed in 0.015 seconds
-
+Answer computed in 0 seconds
+ 
 Polydivisible numbers in base 13:
-Answer computed in 0.031 seconds
-
+Answer computed in 0 seconds
+ 
 Polydivisible numbers in base 14:
 9, 12, 3, 10, 5, 4, 7, 6, 11, 8, 1, 2, 13, 
-Answer computed in 0.031 seconds
-
+Answer computed in 0 seconds
+ 
 Polydivisible numbers in base 15:
-Answer computed in 0.046 seconds
-
+Answer computed in 0 seconds
+ 
 Polydivisible numbers in base 16:
-Answer computed in 0.046 seconds
-
+Answer computed in 0.015 seconds
+ 
 Polydivisible numbers in base 17:
-Answer computed in 0.14 seconds
-
+Answer computed in 0.031 seconds
+ 
 Polydivisible numbers in base 18:
-Answer computed in 0.109 seconds
-
+Answer computed in 0.015 seconds
+ 
 Polydivisible numbers in base 19:
-Answer computed in 0.655 seconds
-
+Answer computed in 0.109 seconds
+ 
 Polydivisible numbers in base 20:
-Answer computed in 0.499 seconds
-
+Answer computed in 0.046 seconds
+ 
 Polydivisible numbers in base 21:
-Answer computed in 1.045 seconds
-
+Answer computed in 0.078 seconds
+ 
 Polydivisible numbers in base 22:
-Answer computed in 2.652 seconds
-
+Answer computed in 0.202 seconds
+ 
 Polydivisible numbers in base 23:
-Answer computed in 12.23 seconds
-
+Answer computed in 0.967 seconds
+ 
 Polydivisible numbers in base 24:
-Answer computed in 4.336 seconds
-
+Answer computed in 0.343 seconds
+ 
 Polydivisible numbers in base 25:
-Answer computed in 31.704 seconds
-
+Answer computed in 2.464 seconds
+ 
 Polydivisible numbers in base 26:
-Answer computed in 40.422 seconds
-
+Answer computed in 3.759 seconds
+ 
 Polydivisible numbers in base 27:
-Answer computed in 70.613 seconds
-
+Answer computed in 7.176 seconds
+ 
 Polydivisible numbers in base 28:
-Answer computed in 95.028 seconds
-
+Answer computed in 9.314 seconds
+ 
 Polydivisible numbers in base 29:
-Answer computed in 977.416 seconds
-
+Answer computed in 95.023 seconds
+ 
 Polydivisible numbers in base 30:
-Answer computed in 210.894 seconds
-
+Answer computed in 18.801 seconds
+ 
 Polydivisible numbers in base 31:
-Answer computed in 4442.7 seconds
-
+Answer computed in 436.76 seconds
+ 
 Polydivisible numbers in base 32:
-Answer computed in 1343.17 seconds
+Answer computed in 118.92 seconds
+ 
+Polydivisible numbers in base 33:
+Answer computed in 518.749 seconds
+ 
+Polydivisible numbers in base 34:
+Answer computed in 1026.38 seconds
+ 
+Polydivisible numbers in base 35:
+Answer computed in 2527.05 seconds
+ 
+Polydivisible numbers in base 36:
+Answer computed in 794.529 seconds

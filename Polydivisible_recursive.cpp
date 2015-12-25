@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <deque>
 #include <ctime>
+#include <vector>
 
 using namespace std;
 
@@ -10,62 +11,56 @@ private:
   const unsigned int base;
   // Digits stored with least significant digit first
   deque<unsigned int> digits;
+  vector<bool> digitsUsed;
 
 public:
   // Constructor from single digit
   nAryInt(unsigned int digit, unsigned int base): base(base){
-    digits.push_back(digit);
-  }
-
-  // Constructor from given deque of digits
-  nAryInt(deque<unsigned int> &digitsToCopy,unsigned int base): base(base){
-    digits.assign(digitsToCopy.begin(),digitsToCopy.end());
+	digitsUsed=vector<bool>(base,false);
+	digitsUsed[digit-1]=true;
+	digits.push_back(digit);
   }
 
   // Add an extra digit at the least significant place, shifting the existing
-  nAryInt appendDigit(unsigned int digit){
-    if(digit>=base){
-      cout << "The digit to append must be smaller than the base number!" << endl;
-      exit(0);
-    }
-    // Copy the deque and return nAryInt with added digit
-    deque<unsigned int> temp(digits.begin(),digits.end());
-    temp.push_front(digit);
-    return nAryInt(temp,base);
+  void appendDigit(unsigned int digit){
+	if(digit>=base){
+  	  cout << "The digit to append must be smaller than the base number!" << endl;
+  	  exit(0);
+  	}
+	digits.push_front(digit);
+	digitsUsed[digit-1]=true;
+  }
+
+  void removeDigit(){
+	digitsUsed[digits.front()-1]=false;
+	digits.pop_front();
+	return;
   }
 
   // Check if some digit is already contained
   bool contains(unsigned int digit){
-    if(digit>=base){
-      cout << "The digit to append must be smaller than the base number!" << endl;
-      exit(0);
-    }
-    for(auto i=digits.begin();i!=digits.end();i++){
-      if(*i==digit){
-        return true;
-      }
-    }
-    return false;
+    return digitsUsed[digit-1];
   }
   
   // Check if divisible by some digit
+  // Mimics the pencil-and-paper division method
   bool isDivisible(unsigned int digit){
-    unsigned int remainder=0;
+	unsigned int remainder=0;
     for(auto i=digits.crbegin();i!=digits.rend();i++){
-      remainder=(base*remainder+*i)%digit;
-    }
-    if(remainder!=0){
-      return false;
-    }
-    return true;
+	  remainder=(base*remainder+*i)%digit;
+	}
+	if(remainder!=0){
+	  return false;
+	}
+	return true;
   }
 
   unsigned int size(){
-    return digits.size();
+	return digits.size();
   }
 
   unsigned int getBase(){
-    return base;
+	return base;
   }
 
   friend std::ostream& operator<< (std::ostream & out, nAryInt const& obj);
@@ -74,39 +69,45 @@ public:
 // Printing of nAryInt-objects
 std::ostream& operator<< (std::ostream & out, nAryInt const& obj){
   for(auto i=obj.digits.crbegin();i!=obj.digits.rend();i++){
-    out << *i << ", ";
+	out << *i << ", ";
   }
   return out;
 }
 
 // Recursive function to check possible digits to add
-void expand(nAryInt a){
+void expand(nAryInt &a){
   if(a.size()==a.getBase()-1){
-    cout << a << endl;
-    return;
+	cout << a << endl;
+	return;
   }
   for(unsigned int digit=1;digit<a.getBase();digit++){
-    if(!a.contains(digit) && a.appendDigit(digit).isDivisible(a.size()+1)){
-      expand(a.appendDigit(digit));
-    }
+	if(!a.contains(digit)){
+	  // Append the digit and expand further if it gives a feasible subsolution
+	  a.appendDigit(digit);
+	  if(a.isDivisible(a.size())){
+		expand(a);
+	  }
+	  a.removeDigit();
+	}
   }
   return;
 }
 
 int main(int argc, char* argv[]){
   if(argc!=2){
-    cout << "The program expects as input the base number" << endl;
-    exit(0);
+	cout << "The program expects as input the base number" << endl;
+	exit(0);
   }
   unsigned int base=strtoul(argv[1],NULL,10);
   cout << "Polydivisible numbers in base " << base << ":" << endl;
   clock_t startTime=clock();
   #pragma omp parallel for
   for(unsigned int i=1;i<base;i++){
-    expand(nAryInt(i,base));
+	nAryInt a(i,base);
+	expand(a);
   }
   clock_t endTime=clock();
   cout << "Answer computed in "
-       << ((float)(endTime-startTime))/CLOCKS_PER_SEC << " seconds" << endl;
+	   << ((float)(endTime-startTime))/CLOCKS_PER_SEC << " seconds" << endl;
   return 0;
 }
