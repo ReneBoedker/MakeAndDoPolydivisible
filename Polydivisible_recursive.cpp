@@ -21,7 +21,7 @@ public:
     digits.push_back(digit);
   }
 
-  // Add an extra digit at the least significant place, shifting the existing
+  // appendDigit adds an extra digit at the least significant place, shifting the existing
   void appendDigit(unsigned int digit){
     if(digit>=base){
       cout << "The digit to append must be smaller than the base number!" << endl;
@@ -37,22 +37,19 @@ public:
     return;
   }
 
-  // Check if some digit is already contained
-  bool contains(unsigned int digit){
-    return digitsUsed[digit-1];
+  // contain checks if digit d appears in digits
+  bool contains(unsigned int d){
+    return digitsUsed[d-1];
   }
   
   // Check if divisible by some digit
   // Mimics the pencil-and-paper division method
-  bool isDivisible(unsigned int digit){
-    unsigned int remainder=0;
+  unsigned int rem(unsigned int m){
+    unsigned int r=0;
     for(auto i=digits.crbegin();i!=digits.rend();i++){
-      remainder=(base*remainder+*i)%digit;
+      r=(base*r + *i)%m;
     }
-    if(remainder!=0){
-      return false;
-    }
-    return true;
+    return r;
   }
 
   unsigned int size(){
@@ -80,15 +77,28 @@ void expand(nAryInt &a){
     cout << a << endl;
     return;
   }
+
+  unsigned int mod = a.size()+1;
+  
+  unsigned int r = a.getBase()%mod;
+  if(r!=0) {
+	r*=a.rem(mod);
+  }
+	
   for(unsigned int digit=1;digit<a.getBase();digit++){
-    if(!a.contains(digit)){
-      // Append the digit and expand further if it gives a feasible subsolution
-      a.appendDigit(digit);
-      if(a.isDivisible(a.size())){
-        expand(a);
-      }
-      a.removeDigit();
-    }
+    if(a.contains(digit)){
+	  continue;
+	}
+
+	if((r+digit)%mod!=0){
+	  // Digit does not give zero remainder
+	  continue;
+	}
+	
+	// Append the digit and expand further
+	a.appendDigit(digit);
+	expand(a);
+	a.removeDigit();
   }
   return;
 }
