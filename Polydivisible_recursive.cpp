@@ -2,22 +2,19 @@
 #include <cstdlib>
 #include <deque>
 #include <chrono>
-#include <vector>
 
 using namespace std;
 
 class nAryInt{
 private:
   const unsigned int base;
-  // Digits stored with least significant digit first
-  deque<unsigned int> digits;
-  vector<bool> digitsUsed;
+  deque<unsigned int> digits; // Digits stored with least significant digit first
+  unsigned long digitsUsed; // bit i is 1 if digit i is used
 
 public:
   // Constructor from single digit
   nAryInt(unsigned int digit, unsigned int base): base(base){
-    digitsUsed=vector<bool>(base,false);
-    digitsUsed[digit-1]=true;
+    digitsUsed = 1UL<<digit;
     digits.push_back(digit);
   }
 
@@ -28,18 +25,18 @@ public:
       exit(0);
     }
     digits.push_front(digit);
-    digitsUsed[digit-1]=true;
+    digitsUsed |= 1UL<<digit;
   }
 
   void removeDigit(){
-    digitsUsed[digits.front()-1]=false;
+    digitsUsed &= ~(1UL<<digits.front());
     digits.pop_front();
     return;
   }
 
   // contain checks if digit d appears in digits
   bool contains(unsigned int d){
-    return digitsUsed[d-1];
+    return digitsUsed & 1UL<<d;
   }
   
   // Check if divisible by some digit
