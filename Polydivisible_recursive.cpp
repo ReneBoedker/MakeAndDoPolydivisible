@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <deque>
-#include <ctime>
+#include <chrono>
 #include <vector>
 
 using namespace std;
@@ -100,14 +100,18 @@ int main(int argc, char* argv[]){
   }
   unsigned int base=strtoul(argv[1],NULL,10);
   cout << "Polydivisible numbers in base " << base << ":" << endl;
-  clock_t startTime=clock();
+  
+  auto startTime=chrono::steady_clock::now();
+  
 #pragma omp parallel for
   for(unsigned int i=1;i<base;i++){
     nAryInt a(i,base);
     expand(a);
   }
-  clock_t endTime=clock();
+  
+  auto endTime=chrono::steady_clock::now();
   cout << "Answer computed in "
-       << ((float)(endTime-startTime))/CLOCKS_PER_SEC << " seconds" << endl;
+       << chrono::duration_cast<chrono::milliseconds>(endTime-startTime).count()/1000.0
+	   << " seconds" << endl;
   return 0;
 }
